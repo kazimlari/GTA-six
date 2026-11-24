@@ -6,7 +6,7 @@
 <title>Play GTA 6 on Browser – Cloud PS5 &amp; PS5 Pro Consoles</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#090614; --panel:#120c24; --panel2:#1a1233; --line:#2e204f;
@@ -62,14 +62,70 @@ h2::after{content:"";display:block;width:76px;height:5px;background:linear-gradi
 .lead{color:var(--muted);max-width:62ch;margin:14px 0 34px}
 
 /* live cloud console showcase */
-.console-frame{position:relative;background:#0a0b10;border:1px solid var(--line);border-top:4px solid var(--pink);padding:14px;box-shadow:0 0 0 1px rgba(255,46,136,.2),0 24px 70px rgba(0,0,0,.65)}
-.console-frame a{display:block;overflow:hidden;border:1px solid rgba(56,232,255,.22)}
-.console-frame img{display:block;width:100%;height:auto;transition:transform .25s ease}
-.console-frame a:hover img{transform:scale(1.01)}
-.console-meta{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:14px 6px 2px;font-size:.92rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.console-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.console-head .lead{margin:14px 0 0}
+.console-frame{position:relative;background:#080a0f;border:1px solid var(--line);border-top:4px solid var(--pink);padding:18px;box-shadow:0 0 0 1px rgba(255,46,136,.2),0 24px 70px rgba(0,0,0,.65)}
+.console-meta{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:16px 4px 2px;margin-top:16px;border-top:1px solid #1b202c;font-size:.92rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .console-tags{display:flex;flex-wrap:wrap;gap:8px}
 .tag{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:4px 10px;border-radius:3px;font-size:.8rem}
 .tag.hi{border-color:rgba(56,232,255,.5);color:var(--cyan)}
+
+/* live console widget cards */
+.lc-next-btn{display:inline-flex;align-items:center;gap:8px;background:#0e1118;color:#ffffff;border:1px solid #2b3346;border-radius:8px;padding:11px 18px;font-family:Inter,system-ui,sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:border-color .15s ease,background .15s ease,color .15s ease;flex-shrink:0}
+.lc-next-btn:hover{border-color:var(--cyan);background:#141925;color:var(--cyan)}
+
+.lc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+@media(max-width:960px){.lc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.lc-grid{grid-template-columns:1fr}}
+
+.lc-card{background:#0d1017;border:1px solid #1b202c;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.lc-card:hover{border-color:#343f59;transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.lc-card.is-free{border-color:rgba(20,197,132,.35)}
+.lc-card.is-free:hover{border-color:rgba(20,197,132,.65);box-shadow:0 12px 30px rgba(20,197,132,.12)}
+
+.lc-stage{position:relative;height:184px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 62%,rgba(58,76,130,.28) 0%,rgba(13,16,23,0) 68%),linear-gradient(180deg,#0b0e15 0%,#0d111a 100%);border-bottom:1px solid #1b202c;padding:12px}
+.lc-stage-top{position:absolute;top:12px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:6px;z-index:2}
+
+.badge-ps5{display:inline-flex;align-items:center;background:#1a56bd;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.04em;padding:4px 7px;border-radius:4px;line-height:1}
+.badge-pro{display:inline-flex;align-items:center;border-radius:4px;overflow:hidden;font-size:.68rem;font-weight:800;letter-spacing:.04em;line-height:1}
+.badge-pro span:first-child{background:#f5d245;color:#111318;padding:4px 5px 4px 6px}
+.badge-pro span:last-child{background:#e5e7eb;color:#111318;padding:4px 6px 4px 5px;font-family:'JetBrains Mono',monospace}
+
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid transparent;line-height:1.2}
+.status-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.status-pill.busy{color:#eab338;background:rgba(234,179,56,.08);border-color:rgba(234,179,56,.35)}
+.status-pill.available{color:#14c584;background:rgba(20,197,132,.1);border-color:rgba(20,197,132,.38)}
+
+.console-svg{width:128px;height:128px;margin-top:20px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.78))}
+
+.lc-body{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.lc-meta-row{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+.lc-model{font-size:.92rem;font-weight:700;color:#ffffff;line-height:1.2}
+.lc-node-id{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#748096;letter-spacing:.01em}
+
+.lc-location{display:flex;align-items:center;gap:7px;font-size:.78rem;color:#8f9ab0;margin-top:-7px;line-height:1.2}
+.flag-svg{width:17px;height:12px;border-radius:2px;flex-shrink:0}
+
+.lc-activity{display:flex;align-items:center;gap:10px;background:#131722;border:1px solid #1b2130;border-radius:9px;padding:9px}
+.lc-thumb{width:34px;height:34px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;letter-spacing:.03em;color:#ffffff;text-align:center;line-height:1.05;border:1px solid rgba(255,255,255,.14);overflow:hidden}
+.thumb-007{background:linear-gradient(135deg,#2b2419 0%,#8c6d3f 55%,#1c1917 100%)}
+.thumb-re4{background:linear-gradient(135deg,#0d1216 0%,#374151 55%,#111827 100%)}
+.thumb-gta6{background:linear-gradient(135deg,#ff2e88 0%,#9b51ea 52%,#38e8ff 100%)}
+.thumb-cod{background:linear-gradient(135deg,#1f2937 0%,#ea580c 60%,#111827 100%)}
+.thumb-fc{background:linear-gradient(135deg,#065f46 0%,#10b981 55%,#064e3b 100%)}
+.thumb-free{background:rgba(20,197,132,.12);border-color:rgba(20,197,132,.28)}
+.thumb-free .free-dot{width:9px;height:9px;border-radius:50%;background:#14c584;box-shadow:0 0 12px #14c584}
+
+.lc-activity-info{min-width:0}
+.lc-activity-title{font-size:.82rem;font-weight:700;color:#ffffff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25}
+.lc-activity-title.free-text{color:#14c584}
+.lc-activity-sub{display:flex;align-items:center;gap:4px;font-size:.71rem;margin-top:2px;color:#8f9ab0;line-height:1.2;white-space:nowrap}
+.lc-activity-sub.amber{color:#eab338}
+
+.lc-btn{width:100%;padding:10px 12px;border-radius:9px;font-family:Inter,system-ui,sans-serif;font-size:.82rem;font-weight:700;text-align:center;cursor:pointer;border:1px solid #252b3b;background:#10141e;color:#ffffff;margin-top:auto;transition:background .15s ease,border-color .15s ease,transform .15s ease}
+.lc-btn:hover{background:#181e2c;border-color:#44506d}
+.lc-btn.primary{background:#14c584;border-color:#14c584;color:#041710}
+.lc-btn.primary:hover{background:#1ad993;border-color:#1ad993;transform:translateY(-1px)}
 
 /* console access cards */
 .servers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
@@ -135,7 +191,10 @@ footer p{max-width:72ch;margin:16px 0 0}
 .modal-error.show{display:block}
 .modal-form .btn{width:100%;text-align:center;margin-top:4px}
 
-@media (prefers-reduced-motion:no-preference){.dot{animation:b 1.6s infinite}@keyframes b{50%{opacity:.35}}}
+@media (prefers-reduced-motion:no-preference){
+  .dot,.free-dot{animation:b 1.6s infinite}
+  @keyframes b{50%{opacity:.35}}
+}
 </style>
 </head>
 <body>
@@ -171,10 +230,107 @@ footer p{max-width:72ch;margin:16px 0 0}
 <main>
 <section class="band" id="consoles">
   <div class="wrap">
-    <h2 class="display">Real consoles, live right now</h2>
-    <p class="lead">Every slot is a physical PS5 or PS5 Pro sitting in one of our global datacenters. Grab a free console instantly at 4K · 120 FPS, or get notified the moment a busy GTA VI unit opens up.</p>
+    <div class="console-head">
+      <div>
+        <h2 class="display">Real consoles, live right now</h2>
+        <p class="lead">Every card is a physical PS5 or PS5 Pro sitting in one of our global datacenters. Grab a free console instantly at 4K &middot; 120 FPS, or get notified the moment a busy unit opens up.</p>
+      </div>
+      <button class="lc-next-btn" type="button" id="nextConsolesBtn">
+        Next consoles
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Reusable SVG definitions for crisp PS5, PS5 Pro, flags, and clock -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id="psWhite" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="65%" stop-color="#dde3ee"/>
+          <stop offset="100%" stop-color="#aeb8cb"/>
+        </linearGradient>
+        <linearGradient id="psCore" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1b2232"/>
+          <stop offset="100%" stop-color="#0a0d14"/>
+        </linearGradient>
+
+        <g id="icon-ps5">
+          <ellipse cx="76" cy="134" rx="44" ry="5" fill="#05070c" opacity="0.85"/>
+          <path d="M84 18 L108 26 L104 128 L82 126 Z" fill="#171d2b"/>
+          <path d="M98 28 L101 29 L98 84 L96 84 Z" fill="#3b82f6" opacity="0.9"/>
+          <path d="M74 22 L99 27 L96 128 L72 126 Z" fill="url(#psCore)"/>
+          <path d="M64 25 L94 12 C96 52 94 94 92 129 L62 126 C64 88 66 56 64 25 Z" fill="url(#psWhite)"/>
+          <path d="M93 66 Q99 95 94 127 L88 128 L90 66 Z" fill="#cfd6e3"/>
+          <line x1="94" y1="78" x2="94" y2="112" stroke="#111622" stroke-width="1.4"/>
+          <path d="M26 105 C28 96 36 94 46 95 L58 95 C68 94 75 96 77 105 L81 124 C81 129 75 131 71 127 L64 117 L40 117 L33 127 C29 131 23 129 23 124 Z" fill="#eef2f8"/>
+          <path d="M40 107 L64 107 L61 118 L43 118 Z" fill="#141923"/>
+          <rect x="44" y="96" width="16" height="9" rx="2" fill="#d3dae6"/>
+          <circle cx="44" cy="111" r="3.4" fill="#232a3a"/>
+          <circle cx="60" cy="111" r="3.4" fill="#232a3a"/>
+          <circle cx="35" cy="103" r="1.4" fill="#4b5563"/>
+          <circle cx="69" cy="103" r="1.4" fill="#4b5563"/>
+        </g>
+
+        <g id="icon-ps5-pro">
+          <use href="#icon-ps5"/>
+          <path d="M64 69 L93 58 L93 61 L64 72 Z" fill="#151a24"/>
+          <path d="M64 74 L93 63 L93 66 L64 77 Z" fill="#151a24"/>
+          <path d="M64 79 L93 68 L93 71 L64 82 Z" fill="#151a24"/>
+        </g>
+
+        <g id="icon-clock">
+          <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/>
+          <polyline points="12 7 12 12 15.5 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Flags -->
+        <g id="flag-br">
+          <rect width="24" height="16" fill="#009c3b"/>
+          <polygon points="12,2 21,8 12,14 3,8" fill="#ffdf00"/>
+          <circle cx="12" cy="8" r="3.4" fill="#002776"/>
+        </g>
+        <g id="flag-us">
+          <rect width="24" height="16" fill="#b22234"/>
+          <path d="M0 2.5h24M0 5.5h24M0 8.5h24M0 11.5h24M0 14.5h24" stroke="#ffffff" stroke-width="1.3"/>
+          <rect width="10" height="9" fill="#3c3b6e"/>
+        </g>
+        <g id="flag-au">
+          <rect width="24" height="16" fill="#012169"/>
+          <path d="M0 0 L10 7 M10 0 L0 7" stroke="#ffffff" stroke-width="1.5"/>
+          <path d="M5 0 V7 M0 3.5 H10" stroke="#c8102e" stroke-width="1.4"/>
+          <circle cx="17.5" cy="5" r="1" fill="#ffffff"/>
+          <circle cx="19.5" cy="8.5" r="1" fill="#ffffff"/>
+          <circle cx="16.5" cy="11.5" r="1.2" fill="#ffffff"/>
+          <circle cx="6" cy="12" r="1.4" fill="#ffffff"/>
+        </g>
+        <g id="flag-uk">
+          <rect width="24" height="16" fill="#012169"/>
+          <path d="M0 0 L24 16 M24 0 L0 16" stroke="#ffffff" stroke-width="2.6"/>
+          <path d="M0 0 L24 16 M24 0 L0 16" stroke="#c8102e" stroke-width="1.1"/>
+          <path d="M12 0 V16 M0 8 H24" stroke="#ffffff" stroke-width="4.2"/>
+          <path d="M12 0 V16 M0 8 H24" stroke="#c8102e" stroke-width="2.2"/>
+        </g>
+        <g id="flag-de">
+          <rect width="24" height="5.33" y="0" fill="#111111"/>
+          <rect width="24" height="5.33" y="5.33" fill="#dd0000"/>
+          <rect width="24" height="5.34" y="10.66" fill="#ffce00"/>
+        </g>
+        <g id="flag-jp">
+          <rect width="24" height="16" fill="#ffffff"/>
+          <circle cx="12" cy="8" r="4.5" fill="#bc002d"/>
+        </g>
+      </defs>
+    </svg>
+
     <div class="console-frame">
-      <a href="https://ibb.co/zH4SJwWr" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/Kzr9wHcX/Screenshot-2026-11-24-091120.png" alt="Screenshot-2026-11-24-091120" border="0"></a>
+      <!-- Live Console Cards Grid -->
+      <div class="lc-grid" id="consoleGrid" aria-live="polite">
+        <!-- Populated on load & cycled by "Next consoles" -->
+      </div>
+
       <div class="console-meta">
         <span>Physical Datacenter Fleet &bull; Real Hardware Streaming</span>
         <div class="console-tags">
@@ -203,7 +359,7 @@ footer p{max-width:72ch;margin:16px 0 0}
           <li>Global regions: US East, Miami, LATAM &amp; Oceania</li>
           <li>Grab a new console slot when your hour ends</li>
         </ul>
-        <a class="btn" href="#" id="join">Sign up to play</a>
+        <a class="btn js-open-modal" href="#" id="join" data-badge="Free 60 Min Cloud Console" data-title="Unlock Your Console Slot">Sign up to play</a>
       </article>
 
       <article class="card soon">
@@ -271,7 +427,7 @@ footer p{max-width:72ch;margin:16px 0 0}
 <div class="modal-overlay" id="playModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal">
     <button class="modal-close" type="button" id="closeModal" aria-label="Close pop-up">&times;</button>
-    <span class="modal-badge">Free 60 Min Cloud Console</span>
+    <span class="modal-badge" id="modalBadge">Free 60 Min Cloud Console</span>
     <h3 id="modalTitle">Unlock Your Console Slot</h3>
     <p class="modal-desc">Our physical PS5 and PS5 Pro cloud consoles are free to play because they’re funded by sponsors. Completing one quick deal unlocks your 60-minute browser stream.</p>
     <ol class="modal-steps">
@@ -290,18 +446,200 @@ footer p{max-width:72ch;margin:16px 0 0}
 
 <script>
 (function(){
-  const joinBtn = document.getElementById('join');
+  const DEAL_URL = 'https://trckapp.org/cl/i/1xj71k';
+
   const modal = document.getElementById('playModal');
+  const modalBadge = document.getElementById('modalBadge');
+  const modalTitle = document.getElementById('modalTitle');
   const closeBtn = document.getElementById('closeModal');
   const form = document.getElementById('offerForm');
   const emailInput = document.getElementById('playerEmail');
   const emailError = document.getElementById('emailError');
+  const consoleGrid = document.getElementById('consoleGrid');
+  const nextConsolesBtn = document.getElementById('nextConsolesBtn');
 
-  // Replace with your real sponsor deal / redirect link
-  const DEAL_URL = 'https://trckapp.org/cl/i/1xj71k
-';
+  let lastTrigger = null;
+  let activePage = 0;
 
-  function openModal(){
+  const consolePages = [
+    [
+      {
+        pro: true,
+        status: 'In use',
+        free: false,
+        model: 'PS5 Pro',
+        nodeId: 'PS5-PRO-GRU-11',
+        flag: 'flag-br',
+        location: 'S\u00e3o Paulo \u00b7 LATAM',
+        thumbClass: 'thumb-007',
+        thumbLabel: '007',
+        game: '007 First Light',
+        sub: 'occupied for 1h 55m',
+        cta: 'Get notified'
+      },
+      {
+        pro: false,
+        status: 'Playing',
+        free: false,
+        model: 'PS5',
+        nodeId: 'PS5-MIA-13',
+        flag: 'flag-us',
+        location: 'Miami \u00b7 US Southeast',
+        thumbClass: 'thumb-re4',
+        thumbLabel: 'RE4',
+        game: 'Resident Evil 4',
+        sub: 'occupied for 2h 2m',
+        cta: 'Get notified'
+      },
+      {
+        pro: true,
+        status: 'Playing',
+        free: false,
+        model: 'PS5 Pro',
+        nodeId: 'PS5-PRO-IAD-11',
+        flag: 'flag-us',
+        location: 'Ashburn \u00b7 US East',
+        thumbClass: 'thumb-gta6',
+        thumbLabel: 'GTA<br>VI',
+        game: 'GTA VI',
+        sub: 'occupied for 2h 51m',
+        cta: 'Get notified'
+      },
+      {
+        pro: false,
+        status: 'Available',
+        free: true,
+        model: 'PS5',
+        nodeId: 'PS5-SYD-05',
+        flag: 'flag-au',
+        location: 'Sydney \u00b7 Oceania',
+        thumbClass: 'thumb-free',
+        thumbLabel: '',
+        game: 'Free now',
+        sub: '4K \u00b7 120 FPS',
+        cta: 'Sign up to play'
+      }
+    ],
+    [
+      {
+        pro: true,
+        status: 'Available',
+        free: true,
+        model: 'PS5 Pro',
+        nodeId: 'PS5-PRO-LHR-04',
+        flag: 'flag-uk',
+        location: 'London \u00b7 EU West',
+        thumbClass: 'thumb-free',
+        thumbLabel: '',
+        game: 'Free now',
+        sub: '4K \u00b7 120 FPS',
+        cta: 'Sign up to play'
+      },
+      {
+        pro: true,
+        status: 'Playing',
+        free: false,
+        model: 'PS5 Pro',
+        nodeId: 'PS5-PRO-DFW-09',
+        flag: 'flag-us',
+        location: 'Dallas \u00b7 US Central',
+        thumbClass: 'thumb-gta6',
+        thumbLabel: 'GTA<br>VI',
+        game: 'GTA VI',
+        sub: 'occupied for 1h 18m',
+        cta: 'Get notified'
+      },
+      {
+        pro: false,
+        status: 'In use',
+        free: false,
+        model: 'PS5',
+        nodeId: 'PS5-FRA-22',
+        flag: 'flag-de',
+        location: 'Frankfurt \u00b7 EU Central',
+        thumbClass: 'thumb-fc',
+        thumbLabel: 'FC<br>27',
+        game: 'EA Sports FC 27',
+        sub: 'occupied for 44m',
+        cta: 'Get notified'
+      },
+      {
+        pro: true,
+        status: 'Playing',
+        free: false,
+        model: 'PS5 Pro',
+        nodeId: 'PS5-PRO-NRT-07',
+        flag: 'flag-jp',
+        location: 'Tokyo \u00b7 Asia East',
+        thumbClass: 'thumb-cod',
+        thumbLabel: 'COD',
+        game: 'Call of Duty',
+        sub: 'occupied for 2h 14m',
+        cta: 'Get notified'
+      }
+    ]
+  ];
+
+  function renderConsoles(){
+    const list = consolePages[activePage];
+    consoleGrid.innerHTML = list.map(function(c){
+      const badgeHtml = c.pro
+        ? '<span class="badge-pro"><span>PS5</span><span>PRO</span></span>'
+        : '<span class="badge-ps5">PS5</span>';
+      const pillClass = c.free ? 'available' : 'busy';
+      const iconId = c.pro ? '#icon-ps5-pro' : '#icon-ps5';
+      const thumbInner = c.free ? '<span class="free-dot"></span>' : c.thumbLabel;
+      const subHtml = c.free
+        ? '<div class="lc-activity-sub"><span>' + c.sub + '</span></div>'
+        : '<div class="lc-activity-sub amber"><svg width="11" height="11" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-clock"/></svg><span>' + c.sub + '</span></div>';
+      const btnClass = c.free ? 'lc-btn primary js-open-modal' : 'lc-btn js-open-modal';
+      const modalBadgeText = c.free
+        ? c.nodeId + ' \u00b7 Free Now'
+        : c.nodeId + ' \u00b7 Priority Alert';
+      const modalTitleText = c.free
+        ? 'Claim ' + c.model + ' Slot'
+        : 'Unlock Your Console Slot';
+
+      return (
+        '<article class="lc-card' + (c.free ? ' is-free' : '') + '">' +
+          '<div class="lc-stage">' +
+            '<div class="lc-stage-top">' +
+              badgeHtml +
+              '<span class="status-pill ' + pillClass + '">' + c.status + '</span>' +
+            '</div>' +
+            '<svg class="console-svg" viewBox="0 0 130 145" aria-hidden="true"><use href="' + iconId + '"/></svg>' +
+          '</div>' +
+          '<div class="lc-body">' +
+            '<div class="lc-meta-row">' +
+              '<span class="lc-model">' + c.model + '</span>' +
+              '<span class="lc-node-id">' + c.nodeId + '</span>' +
+            '</div>' +
+            '<div class="lc-location">' +
+              '<svg class="flag-svg" viewBox="0 0 24 16" aria-hidden="true"><use href="#' + c.flag + '"/></svg>' +
+              '<span>' + c.location + '</span>' +
+            '</div>' +
+            '<div class="lc-activity">' +
+              '<div class="lc-thumb ' + c.thumbClass + '">' + thumbInner + '</div>' +
+              '<div class="lc-activity-info">' +
+                '<div class="lc-activity-title' + (c.free ? ' free-text' : '') + '">' + c.game + '</div>' +
+                subHtml +
+              '</div>' +
+            '</div>' +
+            '<button class="' + btnClass + '" type="button" data-badge="' + modalBadgeText + '" data-title="' + modalTitleText + '">' + c.cta + '</button>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join('');
+  }
+
+  function openModal(trigger){
+    lastTrigger = trigger || null;
+    const customBadge = trigger && trigger.getAttribute('data-badge');
+    const customTitle = trigger && trigger.getAttribute('data-title');
+
+    modalBadge.textContent = customBadge || 'Free 60 Min Cloud Console';
+    modalTitle.textContent = customTitle || 'Unlock Your Console Slot';
+
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('modal-open');
@@ -313,29 +651,41 @@ footer p{max-width:72ch;margin:16px 0 0}
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
     document.body.classList.remove('modal-open');
-    joinBtn.focus();
+    if(lastTrigger && typeof lastTrigger.focus === 'function'){
+      lastTrigger.focus();
+    }
   }
 
-  joinBtn.addEventListener('click',function(e){
-    e.preventDefault();
-    openModal();
+  renderConsoles();
+
+  nextConsolesBtn.addEventListener('click', function(){
+    activePage = (activePage + 1) % consolePages.length;
+    renderConsoles();
+  });
+
+  document.addEventListener('click', function(e){
+    const trigger = e.target.closest('.js-open-modal');
+    if(trigger){
+      e.preventDefault();
+      openModal(trigger);
+    }
   });
 
   closeBtn.addEventListener('click', closeModal);
 
-  modal.addEventListener('click',function(e){
+  modal.addEventListener('click', function(e){
     if(e.target === modal) closeModal();
   });
 
-  document.addEventListener('keydown',function(e){
+  document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 
-  emailInput.addEventListener('input',function(){
+  emailInput.addEventListener('input', function(){
     if(emailError.classList.contains('show')) emailError.classList.remove('show');
   });
 
-  form.addEventListener('submit',function(e){
+  form.addEventListener('submit', function(e){
     e.preventDefault();
     const email = emailInput.value.trim();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -346,12 +696,8 @@ footer p{max-width:72ch;margin:16px 0 0}
       return;
     }
 
-    if(DEAL_URL){
-      const sep = DEAL_URL.includes('?') ? '&' : '?';
-      window.location.href = DEAL_URL + sep + 'email=' + encodeURIComponent(email);
-    } else {
-      alert('Email confirmed (' + email + '). Set DEAL_URL in the script to redirect users to your sponsor deal.');
-    }
+    const sep = DEAL_URL.includes('?') ? '&' : '?';
+    window.location.href = DEAL_URL + sep + 'email=' + encodeURIComponent(email);
   });
 })();
 </script>
