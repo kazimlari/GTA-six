@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Play GTA 6 in Your Browser</title>
+<style>
+  :root {
+    --bg: #f6f5fb;
+    --surface: #ffffff;
+    --ink: #1b1d33;
+    --muted: #545873;
+    --line: #dcdaf0;
+    --accent: #5b3df5;
+    --accent-ink: #ffffff;
+    --hero-bg: #14162b;
+    --hero-ink: #ffffff;
+    --hero-sub: #d8d4ff;
+    --note-bg: #fff4e0;
+    --note-line: #e8a33d;
+    --note-ink: #4a3410;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e0f1c;
+      --surface: #171930;
+      --ink: #ecebfa;
+      --muted: #aeb1cc;
+      --line: #2c2f52;
+      --accent: #8f7bff;
+      --accent-ink: #0e0f1c;
+      --hero-bg: #1b1d3a;
+      --hero-ink: #ffffff;
+      --hero-sub: #cfcaff;
+      --note-bg: #2b2210;
+      --note-line: #b98128;
+      --note-ink: #f3dfb8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 56px; }
+  header.hero {
+    background: var(--hero-bg);
+    color: var(--hero-ink);
+    padding: 56px 20px 48px;
+  }
+  header.hero .inner { max-width: 720px; margin: 0 auto; }
+  h1 {
+    font: 800 clamp(2rem, 6vw, 3.1rem)/1.1 "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+  }
+  .hero p { margin: 0; color: var(--hero-sub); font-size: 1.1rem; max-width: 56ch; }
+  h2 {
+    font: 700 1.45rem/1.25 "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 40px 0 12px;
+  }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  .note {
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-left-width: 6px;
+    color: var(--note-ink);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 28px 0 0;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+  .note strong:first-child { display: block; margin-bottom: 4px; font-family: "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif; }
+  .note p { margin: 0; }
+  ul.checks { padding-left: 1.2rem; margin: 0 0 8px; }
+  ul.checks li { margin-bottom: 8px; padding-left: 4px; }
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+  ol.steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.steps li::before {
+    content: counter(step);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font: 700 1.1rem/40px "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
+  ol.steps h3 {
+    font: 700 1.05rem/1.3 "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 6px 0 4px;
+  }
+  ol.steps p { margin: 0; color: var(--muted); }
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--line); font-size: 0.97rem; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  th { font-family: "Trebuchet MS", "Segoe UI", Helvetica, Arial, sans-serif; background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+  tr:last-child td { border-bottom: 0; }
+  .small { color: var(--muted); font-size: 0.93rem; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+  @media print { body { background: #fff; color: #000; } header.hero { background: #14162b; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <h1>Let’s play GTA 6 in your browser!</h1>
+    <p>A friendly, step-by-step guide to streaming GTA VI on the laptop you already have, using the CouchVolt cloud gaming service.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="note" role="note">
+    <strong>A quick, friendly heads-up</strong>
+    <p>I put this guide together to help you get started. I’m an independent fan sharing this info, so I can’t take responsibility for the CouchVolt service itself (things like availability, performance, billing, or account handling). I also don’t get any commission or payment for mentioning it. It’s always a good idea to read the service’s Terms and Privacy Policy before signing up. Details come from the CouchVolt homepage and may change over time.</p>
+  </div>
+
+  <h2>So, what is it?</h2>
+  <p>CouchVolt lets you stream a real PS5 Pro, PS5 or Xbox Series X that lives in a datacenter straight into Chrome. That means you can play GTA VI and other games on a laptop, Mac or Chromebook without owning a console.</p>
+  <p>The site says it uses real console hardware, not emulation, and that it also works in TV browsers.</p>
+
+  <h2>What you’ll need</h2>
+  <ul class="checks">
+    <li>A fiber or stable <strong>50 Mbps+</strong> internet connection</li>
+    <li>An Ethernet cable, or 5 GHz Wi-Fi close to your router</li>
+    <li>Google Chrome or another Chromium browser</li>
+    <li>An Xbox or PlayStation controller (USB or Bluetooth)</li>
+    <li>Your <strong>own PlayStation or Xbox account</strong>. The site says you sign in with your own account and that games are not included, so it’s worth checking you have access to the game.</li>
+  </ul>
+
+  <h2>Let’s get you playing</h2>
+  <ol class="steps">
+    <li><div><h3>Create your free account</h3><p>Head to <a href="https://couchvolt.com/">couchvolt.com</a> and use the sign-up form. The site says it emails you a code, so there’s no password to remember.</p></div></li>
+    <li><div><h3>Check your connection</h3><p>Try the connection test on the homepage. It takes about two seconds and shows your round-trip time to the nearest server. Lower is better!</p></div></li>
+    <li><div><h3>Choose a console</h3><p>The Consoles section shows live machines, such as Xbox Series X or PS5 Pro, with their location and status (Available, In use, or Playing). Pick one that’s available.</p></div></li>
+    <li><div><h3>Connect your controller</h3><p>Plug in or pair your Xbox or PlayStation controller by USB or Bluetooth before you launch.</p></div></li>
+    <li><div><h3>Sign in with your own account</h3><p>Per the site, you log in with your own PlayStation or Xbox account to play.</p></div></li>
+    <li><div><h3>Launch GTA VI and enjoy</h3><p>Select Grand Theft Auto VI from the games list and jump in. Up to 4K at 120 FPS is advertised on a good connection.</p></div></li>
+    <li><div><h3>Console busy? No problem</h3><p>If everything is in use, choose Get notified and the site will let you know when one opens up.</p></div></li>
+  </ol>
+
+  <h2>Which pass is which?</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Pass</th><th>What it includes (per the site)</th></tr></thead>
+      <tbody>
+        <tr><td>Cloud Console Pass</td><td>A real PS5 Pro, PS5 or Xbox Series X streamed to your browser. GTA VI, Call of Duty and more, up to 4K at 120 FPS.</td></tr>
+        <tr><td>Cloud Gaming Pass</td><td>A library of browser games you play with a controller. Free for life, ad-supported, works in any Chromium browser.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:10px">The homepage says the Cloud Gaming Pass is ad-supported with no subscription and no card needed. For Cloud Console Pass details, it’s best to check the site directly.</p>
+
+  <h2>Tips for a smooth session</h2>
+  <ul class="checks">
+    <li>Use a wired connection if you can. It really helps.</li>
+    <li>Pause other downloads or streams on your network while you play.</li>
+    <li>If you’re on Wi-Fi, sit close to the router and use the 5 GHz band.</li>
+    <li>Pick a console in a region near you for lower latency.</li>
+  </ul>
+
+  <h2>Good to know before you sign up</h2>
+  <p>CouchVolt states that it isn’t affiliated with Sony Interactive Entertainment, Microsoft, Rockstar Games or Activision. Cloud services can have queues, limits, or changes to their terms, so take a moment to review the Terms, Privacy Policy and pricing, and only share account details you’re comfortable sharing.</p>
+
+  <div class="note" role="note">
+    <strong>Friendly reminder</strong>
+    <p>I’m not responsible for this service, and I don’t earn any commission for sharing it. This guide is just here to help. Source: <a href="https://couchvolt.com/">couchvolt.com</a>. Happy gaming!</p>
+  </div>
+
+  <footer>Independent fan guide. Not affiliated with CouchVolt. No commission earned.</footer>
+</main>
+
+</body>
+</html>
 
