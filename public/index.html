@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Play GTA 6 on Browser – Online Servers</title>
+<title>Play GTA 6 on Browser – Cloud PS5 &amp; PS5 Pro Consoles</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@ a{color:inherit}
 .logo span{color:var(--cyan)}
 .bar nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.9rem;letter-spacing:.06em;transition:color .15s}
 .bar nav a:hover{color:var(--peach)}
-@media(max-width:560px){.bar nav a:not(.cta){display:none}}
+@media(max-width:620px){.bar nav a:not(.cta){display:none}}
 
 /* hero: Vice City / Leonida neon sunset skyline */
 .hero{position:relative;overflow:hidden;padding:90px 0 0;background:
@@ -44,11 +44,11 @@ a{color:inherit}
   -webkit-mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 27px);mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 27px)}
 .city{position:relative;display:block;width:100%;height:165px;margin-top:36px;color:#090614}
 .hero .wrap{position:relative;text-align:center}
-.live{display:inline-flex;gap:10px;align-items:center;background:rgba(9,6,20,.6);border:1px solid rgba(56,232,255,.55);padding:6px 16px;border-radius:4px;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.1em;box-shadow:0 0 24px rgba(56,232,255,.18)}
+.live{display:inline-flex;gap:10px;align-items:center;background:rgba(9,6,20,.65);border:1px solid rgba(56,232,255,.55);padding:6px 16px;border-radius:4px;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.1em;box-shadow:0 0 24px rgba(56,232,255,.18)}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-h1{margin:22px 0 0;font-size:clamp(3.4rem,13vw,9rem);line-height:.9;color:#fff;text-shadow:0 4px 0 #140726,0 0 42px rgba(255,46,136,.65)}
+h1{margin:22px 0 0;font-size:clamp(3.2rem,12vw,8.6rem);line-height:.9;color:#fff;text-shadow:0 4px 0 #140726,0 0 42px rgba(255,46,136,.65)}
 h1 small{display:block;font-size:.3em;color:var(--peach);letter-spacing:.18em;margin-bottom:8px;text-shadow:0 2px 0 #140726}
-.hero p{max-width:54ch;margin:22px auto 30px;font-size:1.2rem;color:#fceef5;text-shadow:0 1px 10px rgba(9,6,20,.9)}
+.hero p{max-width:58ch;margin:22px auto 30px;font-size:1.2rem;color:#fceef5;text-shadow:0 1px 10px rgba(9,6,20,.9)}
 .btn{display:inline-block;font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1.1rem;padding:15px 34px;border:0;cursor:pointer;text-decoration:none;color:#070512;background:var(--cyan);clip-path:polygon(0 0,100% 0,100% 70%,94% 100%,0 100%);transition:background .15s,transform .15s,box-shadow .15s}
 .btn:hover{background:var(--peach);transform:translateY(-2px)}
 .btn.ghost{background:rgba(9,6,20,.35);color:var(--peach);border:2px solid var(--peach);clip-path:none;margin-left:10px}
@@ -59,9 +59,19 @@ h1 small{display:block;font-size:.3em;color:var(--peach);letter-spacing:.18em;ma
 section{padding:70px 0}
 h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:0 0 8px;line-height:1}
 h2::after{content:"";display:block;width:76px;height:5px;background:linear-gradient(90deg,var(--pink),var(--peach),var(--cyan));margin-top:12px}
-.lead{color:var(--muted);max-width:60ch;margin:14px 0 34px}
+.lead{color:var(--muted);max-width:62ch;margin:14px 0 34px}
 
-/* servers */
+/* live cloud console showcase */
+.console-frame{position:relative;background:#0a0b10;border:1px solid var(--line);border-top:4px solid var(--pink);padding:14px;box-shadow:0 0 0 1px rgba(255,46,136,.2),0 24px 70px rgba(0,0,0,.65)}
+.console-frame a{display:block;overflow:hidden;border:1px solid rgba(56,232,255,.22)}
+.console-frame img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.console-frame a:hover img{transform:scale(1.01)}
+.console-meta{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between;padding:14px 6px 2px;font-size:.92rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.console-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:4px 10px;border-radius:3px;font-size:.8rem}
+.tag.hi{border-color:rgba(56,232,255,.5);color:var(--cyan)}
+
+/* console access cards */
 .servers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .card{position:relative;background:var(--panel);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;border-top:4px solid var(--peach)}
 .card.active{border-top-color:var(--cyan);box-shadow:0 0 0 1px rgba(56,232,255,.25),0 18px 60px rgba(56,232,255,.1)}
@@ -132,16 +142,16 @@ footer p{max-width:72ch;margin:16px 0 0}
 
 <div class="bar"><div class="wrap">
   <a class="logo" href="#top">PLAY<b>GTA</b><span>6</span></a>
-  <nav><a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a><a class="cta" href="#servers" style="color:var(--cyan)">Servers</a></nav>
+  <nav><a href="#consoles">Live Consoles</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a><a class="cta" href="#servers" style="color:var(--cyan)">Play Now</a></nav>
 </div></div>
 
 <header class="hero" id="top">
   <div class="sun" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="live"><span class="dot"></span> 60 min server online</div>
-    <h1 class="display"><small>Vice City &amp; Leonida in your</small>Play GTA 6<br>on browser</h1>
-    <p>Jump into GTA 6 straight from your browser. Pick a server, hit play and cruise into Vice City.</p>
-    <a class="btn" href="#servers">Choose server</a><a class="btn ghost" href="#how">How it works</a>
+    <div class="live"><span class="dot"></span> Real PS5 &amp; PS5 Pro cloud consoles live now</div>
+    <h1 class="display"><small>Physical consoles in the cloud</small>Play GTA 6<br>on browser</h1>
+    <p>Stream GTA 6 directly from real physical PS5 and PS5 Pro consoles in our global datacenters. Grab a free console at up to 4K 120 FPS—no console required.</p>
+    <a class="btn" href="#servers">Claim a console</a><a class="btn ghost" href="#consoles">See live hardware</a>
   </div>
   <svg class="city" viewBox="0 0 1200 165" preserveAspectRatio="xMidYMax slice" aria-hidden="true" fill="currentColor">
     <!-- Vice City coastal high-rise skyline -->
@@ -159,33 +169,51 @@ footer p{max-width:72ch;margin:16px 0 0}
 </header>
 
 <main>
+<section class="band" id="consoles">
+  <div class="wrap">
+    <h2 class="display">Real consoles, live right now</h2>
+    <p class="lead">Every slot is a physical PS5 or PS5 Pro sitting in one of our global datacenters. Grab a free console instantly at 4K · 120 FPS, or get notified the moment a busy GTA VI unit opens up.</p>
+    <div class="console-frame">
+      <a href="https://ibb.co/zH4SJwWr" target="_blank" rel="noopener noreferrer"><img src="https://i.ibb.co/Kzr9wHcX/Screenshot-2026-11-24-091120.png" alt="Screenshot-2026-11-24-091120" border="0"></a>
+      <div class="console-meta">
+        <span>Physical Datacenter Fleet &bull; Real Hardware Streaming</span>
+        <div class="console-tags">
+          <span class="tag hi">4K &middot; 120 FPS</span>
+          <span class="tag">PS5 &amp; PS5 Pro</span>
+          <span class="tag">Ashburn &middot; Miami &middot; S&atilde;o Paulo &middot; Sydney</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="servers">
   <div class="wrap">
-    <h2 class="display">Choose your server</h2>
-    <p class="lead">Two ways to play. One is live right now, the other is on its way.</p>
+    <h2 class="display">Choose your cloud console</h2>
+    <p class="lead">Two ways to play GTA 6 on real cloud hardware. Grab a free 60-minute console slot now, or wait for unlimited access.</p>
     <div class="servers">
       <article class="card active">
-        <span class="status on">Active</span>
-        <h3>Quick Play Server</h3>
+        <span class="status on">Available Now</span>
+        <h3>Quick Play Console</h3>
         <div class="time">60 MIN</div>
-        <p>One hour of GTA 6 Online in your browser. No long setup.</p>
+        <p>One hour on a real PS5 or PS5 Pro in our datacenters, streamed straight to your browser.</p>
         <ul>
-          <li>60 minutes per session</li>
-          <li>Runs in your browser</li>
-          <li>Available now</li>
-          <li>Start a new session when time ends</li>
+          <li>60 minutes per cloud console session</li>
+          <li>Real PS5 &amp; PS5 Pro hardware (up to 4K &middot; 120 FPS)</li>
+          <li>Global regions: US East, Miami, LATAM &amp; Oceania</li>
+          <li>Grab a new console slot when your hour ends</li>
         </ul>
-        <a class="btn" href="#" id="join">Play now</a>
+        <a class="btn" href="#" id="join">Sign up to play</a>
       </article>
 
       <article class="card soon">
         <span class="status wait">Coming soon</span>
-        <h3>Lifetime Server</h3>
+        <h3>Lifetime Console</h3>
         <div class="time">FOREVER</div>
-        <p>One-time access with no timer. Still being prepared.</p>
+        <p>Unlimited cloud console sessions with priority PS5 Pro access and no timer. Still being prepared.</p>
         <ul>
-          <li>No session limit</li>
-          <li>Play whenever you want</li>
+          <li>No 60-minute session limit</li>
+          <li>Priority queue for busy PS5 Pro units</li>
           <li>Launch date not announced</li>
           <li>Updates will be posted here</li>
         </ul>
@@ -198,24 +226,24 @@ footer p{max-width:72ch;margin:16px 0 0}
 <section class="band" id="how">
   <div class="wrap">
     <h2 class="display">How it works</h2>
-    <p class="lead">From click to Vice City in three steps.</p>
+    <p class="lead">From browser tab to a real PS5 running Vice City in three steps.</p>
     <div class="steps">
-      <div><h3>Pick a server</h3><p>Choose the active 60 minute server.</p></div>
-      <div><h3>Open in browser</h3><p>Press Play now. The game loads in a browser tab.</p></div>
-      <div><h3>Enter Leonida</h3><p>Join a session and play for your full hour.</p></div>
+      <div><h3>Pick an open console</h3><p>Claim an available PS5 or PS5 Pro datacenter unit—or get notified when a busy one frees up.</p></div>
+      <div><h3>Stream in browser</h3><p>Press Sign up to play. Video streams live from the physical console straight into your browser tab.</p></div>
+      <div><h3>Enter Leonida</h3><p>Jump straight into GTA 6 at up to 4K 120 FPS with zero downloads for your full hour.</p></div>
     </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
-    <h2 class="display">What you can do</h2>
-    <p class="lead">Everything GTA 6 is known for.</p>
+    <h2 class="display">Why cloud consoles</h2>
+    <p class="lead">Real next-gen console power built for GTA 6 and beyond.</p>
     <div class="feat">
-      <div><b>Free roam</b><span>Explore Vice City, the Leonida Keys, and Grassrivers with other players.</span></div>
-      <div><b>Heists</b><span>Plan high-stakes jobs and team up for big scores across Leonida.</span></div>
-      <div><b>Street races</b><span>Midnight neon races, coastal sprints, and competitive modes.</span></div>
-      <div><b>Vehicles</b><span>Supercars, bikes, airboats, speedboats, and helicopters to drive.</span></div>
+      <div><b>Real PS5 &amp; PS5 Pro</b><span>Dedicated physical consoles hosted in Ashburn, Miami, S&atilde;o Paulo, and Sydney datacenters.</span></div>
+      <div><b>4K &middot; 120 FPS</b><span>Crisp, responsive cloud streaming built for Vice City, the Leonida Keys, and Grassrivers.</span></div>
+      <div><b>Zero downloads</b><span>Skip massive installs and console patches—boot straight into GTA 6 from your browser.</span></div>
+      <div><b>Live availability</b><span>See which units are free right now or get notified as soon as a playing console opens up.</span></div>
     </div>
   </div>
 </section>
@@ -223,32 +251,33 @@ footer p{max-width:72ch;margin:16px 0 0}
 <section class="band" id="faq">
   <div class="wrap">
     <h2 class="display">FAQ</h2>
-    <p class="lead">Quick answers before you play.</p>
-    <details><summary>What happens after 60 minutes?</summary><p>The session ends. You can start a new 60 minute session while the server is active.</p></details>
-    <details><summary>When does the lifetime server launch?</summary><p>No date yet. Check back on this page.</p></details>
-    <details><summary>What do I need to play?</summary><p>Add your own requirements here, such as supported browsers, internet speed and device.</p></details>
-    <details><summary>Is this official?</summary><p>No. This offer is not sponsored or endorsed by Rockstar.</p></details>
+    <p class="lead">Quick answers before you grab a console.</p>
+    <details><summary>Are these real physical consoles?</summary><p>Yes. Every slot connects your browser directly to a physical PS5 or PS5 Pro unit hosted inside our global datacenters.</p></details>
+    <details><summary>What happens after 60 minutes?</summary><p>Your cloud console session ends so the unit opens up for the next player. You can claim a new 60-minute console slot while units are available.</p></details>
+    <details><summary>When does lifetime console access launch?</summary><p>No date yet. Check back on this page for updates.</p></details>
+    <details><summary>What do I need to play?</summary><p>A modern web browser, a stable high-speed internet connection, and a controller or keyboard.</p></details>
+    <details><summary>Is this official?</summary><p>No. This offer is not sponsored or endorsed by Rockstar or Sony Interactive Entertainment.</p></details>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="disc"><strong>Disclaimer:</strong> This offer is not sponsored or endorsed by Rockstar. Rockstar is a trademark of its respective owner.</div>
-    <p>Grand Theft Auto, GTA 6, and GTA VI are trademarks of their respective owners. Names are used for identification only and do not imply any affiliation.</p>
+    <div class="disc"><strong>Disclaimer:</strong> This offer is not sponsored or endorsed by Rockstar or Sony Interactive Entertainment. Rockstar and PlayStation are trademarks of their respective owners.</div>
+    <p>Grand Theft Auto, GTA 6, GTA VI, PlayStation, PS5, and PS5 Pro are trademarks of their respective owners. Names are used for identification only and do not imply any affiliation.</p>
   </div>
 </footer>
 
 <div class="modal-overlay" id="playModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal">
     <button class="modal-close" type="button" id="closeModal" aria-label="Close pop-up">&times;</button>
-    <span class="modal-badge">Free 60 Min Server</span>
-    <h3 id="modalTitle">Unlock Your Session</h3>
-    <p class="modal-desc">This server is free because it’s funded by ads. Completing one quick sponsor deal is how we keep it free for everyone.</p>
+    <span class="modal-badge">Free 60 Min Cloud Console</span>
+    <h3 id="modalTitle">Unlock Your Console Slot</h3>
+    <p class="modal-desc">Our physical PS5 and PS5 Pro cloud consoles are free to play because they’re funded by sponsors. Completing one quick deal unlocks your 60-minute browser stream.</p>
     <ol class="modal-steps">
       <li>Enter a valid email</li>
       <li>Complete 1 quick deal</li>
-      <li>Unlock 60 minutes per session</li>
+      <li>Unlock a 60-minute PS5 / PS5 Pro session</li>
     </ol>
     <form class="modal-form" id="offerForm" novalidate>
       <label class="modal-label" for="playerEmail">Email address</label>
