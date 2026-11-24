@@ -1,1 +1,329 @@
-<html>HI</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Play GTA 6 on Browser – Online Servers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090614; --panel:#120c24; --panel2:#1a1233; --line:#2e204f;
+  --ink:#fdf6fa; --muted:#b5a7cc;
+  --cyan:#38e8ff; --peach:#ffbe92; --coral:#ff726b; --pink:#ff2e88; --purple:#9b51ea;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Rajdhani,system-ui,sans-serif;font-size:18px;line-height:1.55;font-weight:500}
+body.modal-open{overflow:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.display{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(9,6,20,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:Anton,Impact,sans-serif;font-size:1.45rem;text-decoration:none;letter-spacing:.03em}
+.logo b{background:linear-gradient(90deg,var(--pink),var(--peach));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
+.logo span{color:var(--cyan)}
+.bar nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.9rem;letter-spacing:.06em;transition:color .15s}
+.bar nav a:hover{color:var(--peach)}
+@media(max-width:560px){.bar nav a:not(.cta){display:none}}
+
+/* hero: Vice City / Leonida neon sunset skyline */
+.hero{position:relative;overflow:hidden;padding:90px 0 0;background:
+  radial-gradient(ellipse 75% 60% at 50% 100%,rgba(255,114,107,.55),transparent 70%),
+  radial-gradient(ellipse 50% 40% at 85% 20%,rgba(56,232,255,.22),transparent 65%),
+  linear-gradient(180deg,#08061a 0%,#2b1055 38%,#8e1f6e 68%,#e8487a 86%,#ff9e7d 100%)}
+.sun{position:absolute;left:50%;bottom:65px;width:360px;height:360px;transform:translateX(-50%);border-radius:50%;
+  background:linear-gradient(180deg,#fff0b3 0%,#ffbe92 28%,#ff5e7e 65%,#c8248e 100%);opacity:.92;
+  box-shadow:0 0 90px rgba(255,46,136,.5);
+  -webkit-mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 27px);mask:repeating-linear-gradient(180deg,#000 0 22px,transparent 22px 27px)}
+.city{position:relative;display:block;width:100%;height:165px;margin-top:36px;color:#090614}
+.hero .wrap{position:relative;text-align:center}
+.live{display:inline-flex;gap:10px;align-items:center;background:rgba(9,6,20,.6);border:1px solid rgba(56,232,255,.55);padding:6px 16px;border-radius:4px;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.1em;box-shadow:0 0 24px rgba(56,232,255,.18)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+h1{margin:22px 0 0;font-size:clamp(3.4rem,13vw,9rem);line-height:.9;color:#fff;text-shadow:0 4px 0 #140726,0 0 42px rgba(255,46,136,.65)}
+h1 small{display:block;font-size:.3em;color:var(--peach);letter-spacing:.18em;margin-bottom:8px;text-shadow:0 2px 0 #140726}
+.hero p{max-width:54ch;margin:22px auto 30px;font-size:1.2rem;color:#fceef5;text-shadow:0 1px 10px rgba(9,6,20,.9)}
+.btn{display:inline-block;font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1.1rem;padding:15px 34px;border:0;cursor:pointer;text-decoration:none;color:#070512;background:var(--cyan);clip-path:polygon(0 0,100% 0,100% 70%,94% 100%,0 100%);transition:background .15s,transform .15s,box-shadow .15s}
+.btn:hover{background:var(--peach);transform:translateY(-2px)}
+.btn.ghost{background:rgba(9,6,20,.35);color:var(--peach);border:2px solid var(--peach);clip-path:none;margin-left:10px}
+.btn.ghost:hover{background:var(--peach);color:#090614}
+.btn.off{background:#23193d;color:#7c6d9c;cursor:not-allowed;clip-path:polygon(0 0,100% 0,100% 70%,94% 100%,0 100%)}
+.btn.off:hover{transform:none;background:#23193d}
+
+section{padding:70px 0}
+h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:0 0 8px;line-height:1}
+h2::after{content:"";display:block;width:76px;height:5px;background:linear-gradient(90deg,var(--pink),var(--peach),var(--cyan));margin-top:12px}
+.lead{color:var(--muted);max-width:60ch;margin:14px 0 34px}
+
+/* servers */
+.servers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;border-top:4px solid var(--peach)}
+.card.active{border-top-color:var(--cyan);box-shadow:0 0 0 1px rgba(56,232,255,.25),0 18px 60px rgba(56,232,255,.1)}
+.card.soon{background:repeating-linear-gradient(135deg,var(--panel) 0 14px,#0e091d 14px 28px)}
+.status{align-self:flex-start;font-weight:700;text-transform:uppercase;font-size:.8rem;letter-spacing:.12em;padding:4px 12px;border-radius:3px}
+.status.on{background:var(--cyan);color:#061018}
+.status.wait{background:var(--peach);color:#1b0a14}
+.card h3{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:2.6rem;line-height:1;margin:18px 0 6px}
+.card .time{font-family:Anton,Impact,sans-serif;font-size:4.4rem;line-height:1;color:var(--cyan)}
+.card.soon .time{color:var(--peach)}
+.card p{color:var(--muted);margin:6px 0 16px}
+.card ul{list-style:none;margin:0 0 26px;padding:0;flex:1}
+.card li{padding:9px 0 9px 26px;border-top:1px solid var(--line);position:relative}
+.card li::before{content:"";position:absolute;left:4px;top:17px;width:9px;height:9px;background:var(--cyan);transform:rotate(45deg)}
+.card.soon li::before{background:var(--peach)}
+
+/* steps */
+.band{background:var(--panel)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;counter-reset:s}
+.steps div{counter-increment:s;background:var(--panel2);border-left:4px solid var(--pink);padding:22px}
+.steps div::before{content:counter(s);font-family:Anton,Impact,sans-serif;font-size:2.8rem;background:linear-gradient(180deg,var(--peach),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.steps h3{margin:6px 0 4px;font-size:1.25rem;text-transform:uppercase;letter-spacing:.04em}
+.steps p{margin:0;color:var(--muted)}
+
+/* features */
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--line);border:1px solid var(--line)}
+.feat div{background:var(--panel);padding:26px}
+.feat b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:1.5rem;color:var(--peach);margin-bottom:4px}
+.feat span{color:var(--muted)}
+
+details{background:var(--panel);border:1px solid var(--line);padding:16px 20px;margin-bottom:10px;transition:border-color .15s}
+summary{cursor:pointer;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+details p{color:var(--muted);margin:10px 0 0}
+details[open]{border-color:var(--pink)}
+
+footer{background:#05030b;border-top:1px solid var(--line);padding:44px 0 60px;color:var(--muted);font-size:.95rem}
+.disc{border:1px solid var(--pink);background:rgba(255,46,136,.08);color:var(--ink);padding:16px 20px;max-width:72ch}
+footer p{max-width:72ch;margin:16px 0 0}
+
+/* play modal */
+.modal-overlay{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(9,6,20,.86);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{position:relative;width:100%;max-width:480px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--cyan);box-shadow:0 0 0 1px rgba(56,232,255,.25),0 24px 80px rgba(0,0,0,.85);padding:32px 28px 28px;transform:translateY(14px);transition:transform .2s ease}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-family:Rajdhani,system-ui,sans-serif;font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s,border-color .15s}
+.modal-close:hover{color:var(--peach);border-color:var(--peach)}
+.modal-badge{display:inline-block;background:var(--cyan);color:#061018;font-weight:700;text-transform:uppercase;font-size:.78rem;letter-spacing:.12em;padding:4px 12px;border-radius:3px}
+.modal h3{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:2rem;line-height:1.05;margin:14px 0 0;color:#fff}
+.modal h3::after{content:"";display:block;width:54px;height:4px;background:linear-gradient(90deg,var(--pink),var(--peach),var(--cyan));margin-top:10px}
+.modal-desc{color:var(--muted);margin:14px 0 22px;font-size:1.05rem}
+.modal-steps{list-style:none;margin:0 0 24px;padding:0;counter-reset:ms}
+.modal-steps li{counter-increment:ms;display:flex;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--pink);padding:11px 14px;margin-bottom:10px;font-weight:600;color:var(--ink)}
+.modal-steps li:last-child{margin-bottom:0}
+.modal-steps li::before{content:counter(ms);flex:0 0 30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,46,136,.16);border:1px solid var(--pink);color:var(--peach);font-family:Anton,Impact,sans-serif;font-size:1.1rem;line-height:1}
+.modal-form{display:flex;flex-direction:column;gap:12px}
+.modal-label{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:-4px}
+.modal-input{width:100%;padding:14px 16px;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font-family:Rajdhani,system-ui,sans-serif;font-size:1.05rem;font-weight:600;transition:border-color .15s,box-shadow .15s}
+.modal-input::placeholder{color:#7c6d9c}
+.modal-input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(56,232,255,.22)}
+.modal-error{display:none;color:#ff5e9c;font-size:.92rem;font-weight:700;margin:-4px 0 2px}
+.modal-error.show{display:block}
+.modal-form .btn{width:100%;text-align:center;margin-top:4px}
+
+@media (prefers-reduced-motion:no-preference){.dot{animation:b 1.6s infinite}@keyframes b{50%{opacity:.35}}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="wrap">
+  <a class="logo" href="#top">PLAY<b>GTA</b><span>6</span></a>
+  <nav><a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a><a class="cta" href="#servers" style="color:var(--cyan)">Servers</a></nav>
+</div></div>
+
+<header class="hero" id="top">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="live"><span class="dot"></span> 60 min server online</div>
+    <h1 class="display"><small>Vice City &amp; Leonida in your</small>Play GTA 6<br>on browser</h1>
+    <p>Jump into GTA 6 straight from your browser. Pick a server, hit play and cruise into Vice City.</p>
+    <a class="btn" href="#servers">Choose server</a><a class="btn ghost" href="#how">How it works</a>
+  </div>
+  <svg class="city" viewBox="0 0 1200 165" preserveAspectRatio="xMidYMax slice" aria-hidden="true" fill="currentColor">
+    <!-- Vice City coastal high-rise skyline -->
+    <path d="M0 165V118h36V96h24v22h34V82h30v36h26V102h28V62h32v40h28V84h36v30h28V48h34v66h26V92h36V36h32v56h30V104h38V74h34v40h28V82h38V44h30v70h34V96h38V68h30v46h28V88h36V38h30v64h34V106h38V78h36v36h28V90h34V62h30v52h32V102h42V165z"/>
+    <!-- Left palm tree silhouette -->
+    <path d="M98 165q4-42 15-82h7q-10 40-12 82z"/>
+    <path d="M116 84c-18-16-42-14-58-2 17-3 36-1 51 9-20-2-39 5-50 18 16-7 34-9 50-3-8 10-12 22-11 33 6-11 13-20 22-26 9 7 15 17 19 28 2-12-2-24-10-34 15-4 32-1 45 8-9-13-26-21-44-21 14-8 31-10 47-6-15-12-38-15-56-2 6-11 16-20 28-24-14-2-28 5-35 16-6-12-19-19-33-18 12 5 22 14 26 26z"/>
+    <!-- Right palm tree silhouette -->
+    <path d="M1088 165q-4-46-16-88h-7q11 42 13 88z"/>
+    <path d="M1068 78c18-16 42-14 58-2-17-3-36-1-51 9 20-2 39 5 50 18-16-7-34-9-50-3 8 10 12 22 11 33-6-11-13-20-22-26-9 7-15 17-19 28-2-12 2-24 10-34-15-4-32-1-45 8 9-13 26-21 44-21-14-8-31-10-47-6 15-12 38-15 56-2-6-11-16-20-28-24 14-2 28 5 35 16 6-12 19-19 33-18-12 5-22 14-26 26z"/>
+    <!-- Mid-left smaller palm -->
+    <path d="M225 165q2-28 9-54h5q-7 26-8 54z"/>
+    <path d="M236 112c-12-10-28-9-38-1 11-2 24 0 33 6-13-1-25 3-32 12 10-5 22-6 33-2-5 6-8 14-7 21 4-7 8-13 14-17 6 5 10 11 12 18 1-8-1-16-6-22 10-3 21-1 29 5-6-8-17-14-29-14 9-5 20-6 31-4-10-8-25-10-37-1 4-7 11-13 18-15-9-1-18 3-23 10-4-8-12-12-21-12 8 3 14 9 17 17z"/>
+  </svg>
+</header>
+
+<main>
+<section id="servers">
+  <div class="wrap">
+    <h2 class="display">Choose your server</h2>
+    <p class="lead">Two ways to play. One is live right now, the other is on its way.</p>
+    <div class="servers">
+      <article class="card active">
+        <span class="status on">Active</span>
+        <h3>Quick Play Server</h3>
+        <div class="time">60 MIN</div>
+        <p>One hour of GTA 6 Online in your browser. No long setup.</p>
+        <ul>
+          <li>60 minutes per session</li>
+          <li>Runs in your browser</li>
+          <li>Available now</li>
+          <li>Start a new session when time ends</li>
+        </ul>
+        <a class="btn" href="#" id="join">Play now</a>
+      </article>
+
+      <article class="card soon">
+        <span class="status wait">Coming soon</span>
+        <h3>Lifetime Server</h3>
+        <div class="time">FOREVER</div>
+        <p>One-time access with no timer. Still being prepared.</p>
+        <ul>
+          <li>No session limit</li>
+          <li>Play whenever you want</li>
+          <li>Launch date not announced</li>
+          <li>Updates will be posted here</li>
+        </ul>
+        <span class="btn off" aria-disabled="true">Coming soon</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="wrap">
+    <h2 class="display">How it works</h2>
+    <p class="lead">From click to Vice City in three steps.</p>
+    <div class="steps">
+      <div><h3>Pick a server</h3><p>Choose the active 60 minute server.</p></div>
+      <div><h3>Open in browser</h3><p>Press Play now. The game loads in a browser tab.</p></div>
+      <div><h3>Enter Leonida</h3><p>Join a session and play for your full hour.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 class="display">What you can do</h2>
+    <p class="lead">Everything GTA 6 is known for.</p>
+    <div class="feat">
+      <div><b>Free roam</b><span>Explore Vice City, the Leonida Keys, and Grassrivers with other players.</span></div>
+      <div><b>Heists</b><span>Plan high-stakes jobs and team up for big scores across Leonida.</span></div>
+      <div><b>Street races</b><span>Midnight neon races, coastal sprints, and competitive modes.</span></div>
+      <div><b>Vehicles</b><span>Supercars, bikes, airboats, speedboats, and helicopters to drive.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq">
+  <div class="wrap">
+    <h2 class="display">FAQ</h2>
+    <p class="lead">Quick answers before you play.</p>
+    <details><summary>What happens after 60 minutes?</summary><p>The session ends. You can start a new 60 minute session while the server is active.</p></details>
+    <details><summary>When does the lifetime server launch?</summary><p>No date yet. Check back on this page.</p></details>
+    <details><summary>What do I need to play?</summary><p>Add your own requirements here, such as supported browsers, internet speed and device.</p></details>
+    <details><summary>Is this official?</summary><p>No. This offer is not sponsored or endorsed by Rockstar.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="disc"><strong>Disclaimer:</strong> This offer is not sponsored or endorsed by Rockstar. Rockstar is a trademark of its respective owner.</div>
+    <p>Grand Theft Auto, GTA 6, and GTA VI are trademarks of their respective owners. Names are used for identification only and do not imply any affiliation.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="playModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal">
+    <button class="modal-close" type="button" id="closeModal" aria-label="Close pop-up">&times;</button>
+    <span class="modal-badge">Free 60 Min Server</span>
+    <h3 id="modalTitle">Unlock Your Session</h3>
+    <p class="modal-desc">This server is free because it’s funded by ads. Completing one quick sponsor deal is how we keep it free for everyone.</p>
+    <ol class="modal-steps">
+      <li>Enter a valid email</li>
+      <li>Complete 1 quick deal</li>
+      <li>Unlock 60 minutes per session</li>
+    </ol>
+    <form class="modal-form" id="offerForm" novalidate>
+      <label class="modal-label" for="playerEmail">Email address</label>
+      <input class="modal-input" type="email" id="playerEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+      <span class="modal-error" id="emailError">Please enter a valid email address to continue.</span>
+      <button class="btn" type="submit">Continue</button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  const joinBtn = document.getElementById('join');
+  const modal = document.getElementById('playModal');
+  const closeBtn = document.getElementById('closeModal');
+  const form = document.getElementById('offerForm');
+  const emailInput = document.getElementById('playerEmail');
+  const emailError = document.getElementById('emailError');
+
+  // Replace with your real sponsor deal / redirect link
+  const DEAL_URL = '';
+
+  function openModal(){
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    emailError.classList.remove('show');
+    setTimeout(function(){ emailInput.focus(); }, 60);
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    joinBtn.focus();
+  }
+
+  joinBtn.addEventListener('click',function(e){
+    e.preventDefault();
+    openModal();
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click',function(e){
+    if(e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  emailInput.addEventListener('input',function(){
+    if(emailError.classList.contains('show')) emailError.classList.remove('show');
+  });
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if(!valid){
+      emailError.classList.add('show');
+      emailInput.focus();
+      return;
+    }
+
+    if(DEAL_URL){
+      const sep = DEAL_URL.includes('?') ? '&' : '?';
+      window.location.href = DEAL_URL + sep + 'email=' + encodeURIComponent(email);
+    } else {
+      alert('Email confirmed (' + email + '). Set DEAL_URL in the script to redirect users to your sponsor deal.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
