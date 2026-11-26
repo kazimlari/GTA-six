@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fullscreen Video</title>
   <script src="https://fast.wistia.com/player.js" async></script>
-  <script src="https://fast.wistia.com/embed/u5nqh97lt7.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/yap2qjcqzc.js" async type="module"></script>
   <style>
     * {
       margin: 0;
@@ -26,11 +26,14 @@
       width: 100vw;
       height: 100vh;
       background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
     }
 
-    wistia-player[media-id='u5nqh97lt7']:not(:defined) {
-      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/u5nqh97lt7/swatch');
+    wistia-player[media-id='yap2qjcqzc']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/yap2qjcqzc/swatch');
       display: block;
       width: 100%;
       height: 100%;
@@ -41,7 +44,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      /* Prevents hover toolbars and click-to-pause overlays */
+      /* Blocks hover toolbars and click-to-pause overlays */
       pointer-events: none;
     }
   </style>
@@ -50,7 +53,7 @@
   <div class="video-stage" id="stage">
     <wistia-player
       id="video"
-      media-id="u5nqh97lt7"
+      media-id="yap2qjcqzc"
       autoplay
       muted
       silent-autoplay="allow"
@@ -60,6 +63,7 @@
       controls-visible-on-load="false"
       play-bar-control="false"
       play-pause-control="false"
+      play-pause-notifier="false"
       volume-control="false"
       settings-control="false"
       fullscreen-control="false"
@@ -72,7 +76,7 @@
     const stage = document.getElementById("stage");
     const player = document.getElementById("video");
 
-    // Click anywhere to enter true OS fullscreen and unmute audio
+    // Click anywhere to enter true browser fullscreen and unmute audio
     stage.addEventListener("click", () => {
       if (!document.fullscreenElement) {
         stage.requestFullscreen?.().catch(() => {});
